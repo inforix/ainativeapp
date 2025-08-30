@@ -1,0 +1,143 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 博客文章列表
+const articles = [
+  {
+    title: "AI原生应用程序：完整回顾与分析",
+    excerpt: "全面分析AI原生应用程序，探索其架构、优势以及对现代软件开发的变革性影响。",
+    date: "2025-08-27",
+    slug: "ai-native-app-full-review",
+    readTime: "12分钟阅读",
+    category: "分析",
+    featured: true
+  }
+];
+
+const breadcrumbItems = [
+  { name: "文章", href: "/zh/articles" }
+];
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead 
+			title="AI原生应用文章 | 专家见解与分析"
+			description="探索关于AI原生应用程序的深度文章、开发方法论、案例研究和智能软件开发的专家见解。"
+			keywords="AI原生应用文章, AI开发博客, AI架构见解, AI应用分析"
+			type="website"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container-custom">
+				<Breadcrumb items={breadcrumbItems} />
+				
+				<!-- Page Header -->
+				<section class="py-12">
+					<div class="text-center max-w-3xl mx-auto">
+						<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+							文章与见解
+						</h1>
+						<p class="text-xl text-gray-600 leading-relaxed">
+							深入探讨AI原生应用程序、开发方法论、行业分析以及智能软件开发的未来。
+						</p>
+					</div>
+				</section>
+				
+				<!-- Articles Grid -->
+				<section class="pb-16">
+					<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+						{articles.map((article) => (
+							<article class="card p-6 hover:-translate-y-1">
+								{article.featured && (
+									<div class="mb-3">
+										<span class="inline-block px-3 py-1 text-xs font-semibold text-primary-700 bg-primary-100 rounded-full">
+											精选
+										</span>
+									</div>
+								)}
+								
+								<div class="flex items-center text-sm text-gray-500 mb-3">
+									<span class="bg-gray-100 px-2 py-1 rounded text-xs font-medium mr-3">
+										{article.category}
+									</span>
+									<time datetime={article.date}>
+										{new Date(article.date).toLocaleDateString('zh-CN', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</time>
+								</div>
+								
+								<h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+									<a 
+										href={`/zh/articles/${article.slug}`}
+										class="hover:text-primary-600 transition-colors duration-200"
+									>
+										{article.title}
+									</a>
+								</h2>
+								
+								<p class="text-gray-600 leading-relaxed mb-4 line-clamp-3">
+									{article.excerpt}
+								</p>
+								
+								<div class="flex items-center justify-between text-sm">
+									<span class="text-gray-500">{article.readTime}</span>
+									<a 
+										href={`/zh/articles/${article.slug}`}
+										class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center"
+									>
+										阅读更多 →
+									</a>
+								</div>
+							</article>
+						))}
+					</div>
+					
+					<!-- Empty State for More Articles -->
+					<div class="text-center mt-12 py-12 border-t border-gray-200">
+						<h3 class="text-xl font-semibold text-gray-900 mb-2">更多文章即将发布</h3>
+						<p class="text-gray-600 mb-6">
+							我们正在不断创作关于AI原生应用程序的新内容。敬请期待更多见解、教程和案例研究。
+						</p>
+						<a 
+							href="/zh/about" 
+							class="inline-flex items-center px-6 py-3 border border-primary-300 text-primary-700 bg-primary-50 hover:bg-primary-100 rounded-lg font-medium transition-colors duration-200"
+						>
+							了解我们的使命
+						</a>
+					</div>
+				</section>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

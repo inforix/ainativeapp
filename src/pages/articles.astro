@@ -1,0 +1,144 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+import { PAGE_META, SEO_KEYWORDS } from '../consts';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 博客文章列表
+const articles = [
+  {
+    title: "AI Native Applications: A Complete Review and Analysis",
+    excerpt: "A comprehensive analysis of AI Native Applications, exploring their architecture, benefits, and transformative impact on modern software development.",
+    date: "2025-08-27",
+    slug: "ai-native-app-full-review",
+    readTime: "12 min read",
+    category: "Analysis",
+    featured: true
+  }
+];
+
+const breadcrumbItems = [
+  { name: "Articles", href: "/articles" }
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead 
+			title="AI Native Application Articles | Expert Insights & Analysis"
+			description="Explore in-depth articles about AI Native Applications, development methodologies, case studies, and expert insights on intelligent software development."
+			keywords="AI Native Applications Articles, AI Development Blog, AI Architecture Insights, AI Application Analysis"
+			type="website"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="container-custom">
+				<Breadcrumb items={breadcrumbItems} />
+				
+				<!-- Page Header -->
+				<section class="py-12">
+					<div class="text-center max-w-3xl mx-auto">
+						<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+							Articles & Insights
+						</h1>
+						<p class="text-xl text-gray-600 leading-relaxed">
+							Deep dives into AI Native Applications, development methodologies, industry analysis, and the future of intelligent software development.
+						</p>
+					</div>
+				</section>
+				
+				<!-- Articles Grid -->
+				<section class="pb-16">
+					<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+						{articles.map((article) => (
+							<article class="card p-6 hover:-translate-y-1">
+								{article.featured && (
+									<div class="mb-3">
+										<span class="inline-block px-3 py-1 text-xs font-semibold text-primary-700 bg-primary-100 rounded-full">
+											Featured
+										</span>
+									</div>
+								)}
+								
+								<div class="flex items-center text-sm text-gray-500 mb-3">
+									<span class="bg-gray-100 px-2 py-1 rounded text-xs font-medium mr-3">
+										{article.category}
+									</span>
+									<time datetime={article.date}>
+										{new Date(article.date).toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</time>
+								</div>
+								
+								<h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+									<a 
+										href={`/articles/${article.slug}`}
+										class="hover:text-primary-600 transition-colors duration-200"
+									>
+										{article.title}
+									</a>
+								</h2>
+								
+								<p class="text-gray-600 leading-relaxed mb-4 line-clamp-3">
+									{article.excerpt}
+								</p>
+								
+								<div class="flex items-center justify-between text-sm">
+									<span class="text-gray-500">{article.readTime}</span>
+									<a 
+										href={`/articles/${article.slug}`}
+										class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center"
+									>
+										Read More →
+									</a>
+								</div>
+							</article>
+						))}
+					</div>
+					
+					<!-- Empty State for More Articles -->
+					<div class="text-center mt-12 py-12 border-t border-gray-200">
+						<h3 class="text-xl font-semibold text-gray-900 mb-2">More Articles Coming Soon</h3>
+						<p class="text-gray-600 mb-6">
+							We're constantly creating new content about AI Native Applications. Stay tuned for more insights, tutorials, and case studies.
+						</p>
+						<a 
+							href="/about" 
+							class="inline-flex items-center px-6 py-3 border border-primary-300 text-primary-700 bg-primary-50 hover:bg-primary-100 rounded-lg font-medium transition-colors duration-200"
+						>
+							Learn About Our Mission
+						</a>
+					</div>
+				</section>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

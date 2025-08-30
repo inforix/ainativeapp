@@ -1,0 +1,90 @@
+---
+import { languages } from '../i18n/languages';
+
+export interface Props {
+  currentLang: keyof typeof languages;
+  currentPath: string;
+}
+
+const { currentLang, currentPath } = Astro.props;
+
+// Remove language prefix from current path
+const pathWithoutLang = currentPath.replace(/^\/zh\//, '/').replace(/^\/zh$/, '/') || '/';
+---
+
+<div class="relative inline-block">
+  <button 
+    class="flex items-center gap-2 px-4 py-2 bg-transparent text-gray-700 border-0 rounded-md cursor-pointer text-sm font-medium transition-all duration-200 hover:bg-gray-100 lang-toggle" 
+    id="langToggle" 
+    aria-label="Select language"
+  >
+    <svg class="w-5 h-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="m12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </svg>
+    <span class="whitespace-nowrap font-medium">{languages[currentLang]}</span>
+    <svg class="w-4 h-4 transition-transform duration-200 flex-shrink-0 chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6,9 12,15 18,9"></polyline>
+    </svg>
+  </button>
+  
+  <div class="absolute top-full right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg min-w-[120px] opacity-0 invisible transform -translate-y-2 transition-all duration-200 z-[1000] lang-menu" id="langMenu">
+    {Object.entries(languages).map(([code, name]) => (
+      <a 
+        href={code === 'en' ? pathWithoutLang : `/${code}${pathWithoutLang}`}
+        class={`block px-4 py-3 text-gray-700 no-underline text-sm transition-colors duration-200 hover:bg-gray-50 ${code === currentLang ? 'bg-primary-500 text-white' : ''} ${code === Object.keys(languages)[0] ? 'rounded-t-lg' : ''} ${code === Object.keys(languages)[Object.keys(languages).length - 1] ? 'rounded-b-lg' : ''}`}
+        data-lang={code}
+      >
+        {name}
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .lang-toggle.active .chevron {
+    transform: rotate(180deg);
+  }
+
+  .lang-menu.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('langToggle');
+    const menu = document.getElementById('langMenu');
+    
+    if (toggle && menu) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isOpen = menu.classList.contains('show');
+        
+        if (isOpen) {
+          menu.classList.remove('show');
+          toggle.classList.remove('active');
+        } else {
+          menu.classList.add('show');
+          toggle.classList.add('active');
+        }
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', function() {
+        menu.classList.remove('show');
+        toggle.classList.remove('active');
+      });
+      
+      // Prevent menu from closing when clicking inside it
+      menu.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    }
+  });
+</script>

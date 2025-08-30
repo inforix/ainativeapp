@@ -1,0 +1,528 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={t('cases.title')} description={t('cases.intro')} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<h1>{t('cases.title')}</h1>
+				<p class="hero-subtitle">{t('cases.subtitle')}</p>
+				<p class="hero-description">{t('cases.intro')}</p>
+			</section>
+
+			<!-- Development & Code Generation -->
+			<section class="cases-section">
+				<div class="container">
+					<h2 class="category-title">
+						<span class="category-icon">💻</span>
+						{t('cases.development.title')}
+					</h2>
+					
+					<div class="case-card featured">
+						<div class="case-header">
+							<div class="case-logo">
+								<span class="logo-text">GitHub</span>
+							</div>
+							<div class="case-title-group">
+								<h3>{t('cases.copilot.title')}</h3>
+								<p class="company">{t('cases.copilot.company')}</p>
+							</div>
+						</div>
+						<p class="case-description">{t('cases.copilot.desc')}</p>
+						<div class="case-impact">
+							<strong>Impact:</strong> {t('cases.copilot.impact')}
+						</div>
+						<div class="metrics-grid">
+							<div class="metric">
+								<div class="metric-value">92%</div>
+								<div class="metric-label">{t('cases.copilot.metric1').split(' ').slice(1).join(' ')}</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">50%+</div>
+								<div class="metric-label">{t('cases.copilot.metric2').split(' ').slice(1).join(' ')}</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">30+</div>
+								<div class="metric-label">{t('cases.copilot.metric3').split(' ').slice(1).join(' ')}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Creative & Design -->
+			<section class="cases-section alt">
+				<div class="container">
+					<h2 class="category-title">
+						<span class="category-icon">🎨</span>
+						{t('cases.creative.title')}
+					</h2>
+					
+					<div class="case-card featured">
+						<div class="case-header">
+							<div class="case-logo midjourney">
+								<span class="logo-text">MJ</span>
+							</div>
+							<div class="case-title-group">
+								<h3>{t('cases.midjourney.title')}</h3>
+								<p class="company">{t('cases.midjourney.company')}</p>
+							</div>
+						</div>
+						<p class="case-description">{t('cases.midjourney.desc')}</p>
+						<div class="case-impact">
+							<strong>Impact:</strong> {t('cases.midjourney.impact')}
+						</div>
+						<div class="metrics-grid">
+							<div class="metric">
+								<div class="metric-value">15M+</div>
+								<div class="metric-label">Active Users</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">91%</div>
+								<div class="metric-label">Profit Margin</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">2.5h</div>
+								<div class="metric-label">Complex Design Time</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Healthcare & Life Sciences -->
+			<section class="cases-section">
+				<div class="container">
+					<h2 class="category-title">
+						<span class="category-icon">🧬</span>
+						{t('cases.healthcare.title')}
+					</h2>
+					
+					<div class="case-card featured">
+						<div class="case-header">
+							<div class="case-logo deepmind">
+								<span class="logo-text">DM</span>
+							</div>
+							<div class="case-title-group">
+								<h3>{t('cases.alphafold.title')}</h3>
+								<p class="company">{t('cases.alphafold.company')}</p>
+							</div>
+						</div>
+						<p class="case-description">{t('cases.alphafold.desc')}</p>
+						<div class="case-impact">
+							<strong>Impact:</strong> {t('cases.alphafold.impact')}
+						</div>
+						<div class="metrics-grid">
+							<div class="metric">
+								<div class="metric-value">200M+</div>
+								<div class="metric-label">Proteins Predicted</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">90%+</div>
+								<div class="metric-label">Accuracy Rate</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">Minutes</div>
+								<div class="metric-label">vs Months Processing</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Business Operations -->
+			<section class="cases-section alt">
+				<div class="container">
+					<h2 class="category-title">
+						<span class="category-icon">💼</span>
+						{t('cases.business.title')}
+					</h2>
+					
+					<div class="cases-grid">
+						<div class="case-card">
+							<div class="case-header">
+								<div class="case-logo microsoft">
+									<span class="logo-text">M365</span>
+								</div>
+								<div class="case-title-group">
+									<h3>{t('cases.copilot365.title')}</h3>
+									<p class="company">{t('cases.copilot365.company')}</p>
+								</div>
+							</div>
+							<p class="case-description">{t('cases.copilot365.desc')}</p>
+							<div class="case-impact">
+								<strong>Impact:</strong> {t('cases.copilot365.impact')}
+							</div>
+							<div class="metrics-grid">
+								<div class="metric">
+									<div class="metric-value">$50M</div>
+									<div class="metric-label">Annual Savings</div>
+								</div>
+								<div class="metric">
+									<div class="metric-value">94%</div>
+									<div class="metric-label">Time Reduction</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="case-card">
+							<div class="case-header">
+								<div class="case-logo sephora">
+									<span class="logo-text">S</span>
+								</div>
+								<div class="case-title-group">
+									<h3>{t('cases.sephora.title')}</h3>
+									<p class="company">{t('cases.sephora.company')}</p>
+								</div>
+							</div>
+							<p class="case-description">{t('cases.sephora.desc')}</p>
+							<div class="case-impact">
+								<strong>Impact:</strong> {t('cases.sephora.impact')}
+							</div>
+							<div class="metrics-grid">
+								<div class="metric">
+									<div class="metric-value">30%</div>
+									<div class="metric-label">Sales Increase</div>
+								</div>
+								<div class="metric">
+									<div class="metric-value">65%</div>
+									<div class="metric-label">Satisfaction Boost</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Sports & Entertainment -->
+			<section class="cases-section">
+				<div class="container">
+					<h2 class="category-title">
+						<span class="category-icon">🏆</span>
+						{t('cases.sports.title')}
+					</h2>
+					
+					<div class="case-card featured">
+						<div class="case-header">
+							<div class="case-logo olympics">
+								<span class="logo-text">🥇</span>
+							</div>
+							<div class="case-title-group">
+								<h3>{t('cases.olympics.title')}</h3>
+								<p class="company">{t('cases.olympics.company')}</p>
+							</div>
+						</div>
+						<p class="case-description">{t('cases.olympics.desc')}</p>
+						<div class="case-impact">
+							<strong>Impact:</strong> {t('cases.olympics.impact')}
+						</div>
+						<div class="metrics-grid">
+							<div class="metric">
+								<div class="metric-value">65%</div>
+								<div class="metric-label">Fewer Disputes</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">22</div>
+								<div class="metric-label">Injuries Prevented</div>
+							</div>
+							<div class="metric">
+								<div class="metric-value">40%</div>
+								<div class="metric-label">Viewership Increase</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section class="cta-section">
+				<div class="container">
+					<h2>Ready to Build Your AI Native Application?</h2>
+					<p>Learn from these success stories and start your AI transformation journey</p>
+					<div class="cta-buttons">
+						<a href="/how" class="btn-primary">Learn How to Build</a>
+						<a href="/about" class="btn-secondary">Discover Our Mission</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+		
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4rem 0;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+			}
+			
+			.hero h1 {
+				font-size: 3.5rem;
+				margin-bottom: 1rem;
+				font-weight: 700;
+			}
+			
+			.hero-subtitle {
+				font-size: 1.3rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+				max-width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.hero-description {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				opacity: 0.95;
+			}
+			
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+			
+			.cases-section {
+				padding: 4rem 0;
+			}
+			
+			.cases-section.alt {
+				background: #f8fafc;
+			}
+			
+			.category-title {
+				font-size: 2.2rem;
+				margin-bottom: 3rem;
+				color: #2d3748;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
+			
+			.category-icon {
+				font-size: 2.5rem;
+			}
+			
+			.case-card {
+				background: white;
+				padding: 2.5rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+				border-left: 4px solid #667eea;
+				transition: transform 0.2s, box-shadow 0.2s;
+				margin-bottom: 2rem;
+			}
+			
+			.case-card.featured {
+				border-left-width: 6px;
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+			}
+			
+			.case-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+			}
+			
+			.case-header {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+			
+			.case-logo {
+				width: 60px;
+				height: 60px;
+				background: #667eea;
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+			
+			.case-logo.midjourney {
+				background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+			}
+			
+			.case-logo.deepmind {
+				background: linear-gradient(135deg, #4285f4, #34a853);
+			}
+			
+			.case-logo.microsoft {
+				background: linear-gradient(135deg, #00bcf2, #0078d4);
+			}
+			
+			.case-logo.sephora {
+				background: linear-gradient(135deg, #000000, #ff6b9d);
+			}
+			
+			.case-logo.olympics {
+				background: linear-gradient(135deg, #ffd700, #ff6b35);
+			}
+			
+			.logo-text {
+				color: white;
+				font-weight: 700;
+				font-size: 1.2rem;
+			}
+			
+			.case-title-group h3 {
+				font-size: 1.5rem;
+				color: #2d3748;
+				margin: 0 0 0.5rem 0;
+			}
+			
+			.company {
+				color: #718096;
+				margin: 0;
+				font-size: 0.9rem;
+			}
+			
+			.case-description {
+				color: #4a5568;
+				line-height: 1.6;
+				margin-bottom: 1.5rem;
+			}
+			
+			.case-impact {
+				background: #f0fff4;
+				padding: 1rem;
+				border-radius: 8px;
+				border-left: 3px solid #48bb78;
+				margin-bottom: 2rem;
+				font-size: 0.95rem;
+				color: #2d3748;
+			}
+			
+			.metrics-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+				gap: 1.5rem;
+			}
+			
+			.metric {
+				text-align: center;
+				padding: 1rem;
+				background: #f7fafc;
+				border-radius: 8px;
+			}
+			
+			.metric-value {
+				font-size: 1.8rem;
+				font-weight: 700;
+				color: #667eea;
+				margin-bottom: 0.5rem;
+			}
+			
+			.metric-label {
+				font-size: 0.8rem;
+				color: #718096;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+			
+			.cases-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+				gap: 2rem;
+			}
+			
+			.cta-section {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-align: center;
+				padding: 4rem 0;
+			}
+			
+			.cta-section h2 {
+				color: white;
+				margin-bottom: 1rem;
+				font-size: 2.5rem;
+			}
+			
+			.cta-section p {
+				font-size: 1.2rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+			}
+			
+			.cta-buttons {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			
+			.btn-primary, .btn-secondary {
+				padding: 1rem 2rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			
+			.btn-primary {
+				background: white;
+				color: #667eea;
+			}
+			
+			.btn-secondary {
+				background: rgba(255, 255, 255, 0.2);
+				color: white;
+				border: 2px solid white;
+			}
+			
+			.btn-primary:hover, .btn-secondary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+			}
+			
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 2.5rem;
+				}
+				
+				.category-title {
+					font-size: 1.8rem;
+				}
+				
+				.case-header {
+					flex-direction: column;
+					text-align: center;
+				}
+				
+				.cases-grid {
+					grid-template-columns: 1fr;
+				}
+				
+				.cta-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+				
+				.metrics-grid {
+					grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+					gap: 1rem;
+				}
+			}
+		</style>
+	</body>
+</html>

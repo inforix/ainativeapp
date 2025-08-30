@@ -1,0 +1,382 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LanguagePicker from '../../components/LanguagePicker.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead title={t('how.title')} description={t('how.intro')} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<h1>{t('how.title')}</h1>
+				<p class="hero-subtitle">{t('how.subtitle')}</p>
+				<p class="hero-description">{t('how.intro')}</p>
+			</section>
+
+			<!-- Development Methodology -->
+			<section class="methodology">
+				<div class="container">
+					<h2>{t('how.methodology.title')}</h2>
+					<p class="section-subtitle">{t('how.methodology.subtitle')}</p>
+					
+					<div class="steps-grid">
+						<div class="step-card">
+							<div class="step-number">01</div>
+							<h3>{t('how.step1.title')}</h3>
+							<p>{t('how.step1.desc')}</p>
+						</div>
+						<div class="step-card">
+							<div class="step-number">02</div>
+							<h3>{t('how.step2.title')}</h3>
+							<p>{t('how.step2.desc')}</p>
+						</div>
+						<div class="step-card">
+							<div class="step-number">03</div>
+							<h3>{t('how.step3.title')}</h3>
+							<p>{t('how.step3.desc')}</p>
+						</div>
+						<div class="step-card">
+							<div class="step-number">04</div>
+							<h3>{t('how.step4.title')}</h3>
+							<p>{t('how.step4.desc')}</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Technologies -->
+			<section class="technologies">
+				<div class="container">
+					<h2>{t('how.technologies.title')}</h2>
+					<p class="section-subtitle">{t('how.technologies.subtitle')}</p>
+					
+					<div class="tech-grid">
+						<div class="tech-card">
+							<div class="tech-icon">🧠</div>
+							<h3>{t('how.tech1.title')}</h3>
+							<p>{t('how.tech1.desc')}</p>
+						</div>
+						<div class="tech-card">
+							<div class="tech-icon">☁️</div>
+							<h3>{t('how.tech2.title')}</h3>
+							<p>{t('how.tech2.desc')}</p>
+						</div>
+						<div class="tech-card">
+							<div class="tech-icon">⚡</div>
+							<h3>{t('how.tech3.title')}</h3>
+							<p>{t('how.tech3.desc')}</p>
+						</div>
+						<div class="tech-card">
+							<div class="tech-icon">🗃️</div>
+							<h3>{t('how.tech4.title')}</h3>
+							<p>{t('how.tech4.desc')}</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Best Practices -->
+			<section class="best-practices">
+				<div class="container">
+					<h2>{t('how.bestpractices.title')}</h2>
+					<p class="section-subtitle">{t('how.bestpractices.subtitle')}</p>
+					
+					<div class="practices-grid">
+						<div class="practice-card">
+							<h3>{t('how.practice1.title')}</h3>
+							<p>{t('how.practice1.desc')}</p>
+						</div>
+						<div class="practice-card">
+							<h3>{t('how.practice2.title')}</h3>
+							<p>{t('how.practice2.desc')}</p>
+						</div>
+						<div class="practice-card">
+							<h3>{t('how.practice3.title')}</h3>
+							<p>{t('how.practice3.desc')}</p>
+						</div>
+						<div class="practice-card">
+							<h3>{t('how.practice4.title')}</h3>
+							<p>{t('how.practice4.desc')}</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section class="cta-section">
+				<div class="container">
+					<h2>准备开始了吗？</h2>
+					<p>探索真实案例，学习成功的AI原生应用经验</p>
+					<div class="cta-buttons">
+						<a href="/zh/cases" class="btn-primary">查看成功案例</a>
+						<a href="/zh/about" class="btn-secondary">了解更多关于我们</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+		
+		<style>
+			.hero {
+				text-align: center;
+				padding: 4rem 0;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+			}
+			
+			.hero h1 {
+				font-size: 3.5rem;
+				margin-bottom: 1rem;
+				font-weight: 700;
+			}
+			
+			.hero-subtitle {
+				font-size: 1.3rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+				max-width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.hero-description {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				opacity: 0.95;
+			}
+			
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+			
+			section {
+				padding: 4rem 0;
+			}
+			
+			section h2 {
+				font-size: 2.5rem;
+				text-align: center;
+				margin-bottom: 1rem;
+				color: #2d3748;
+			}
+			
+			.section-subtitle {
+				text-align: center;
+				font-size: 1.2rem;
+				color: #718096;
+				margin-bottom: 3rem;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			.methodology {
+				background: #f8fafc;
+			}
+			
+			.steps-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+			}
+			
+			.step-card {
+				background: white;
+				padding: 2rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+				border-left: 4px solid #667eea;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			
+			.step-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+			}
+			
+			.step-number {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background: #667eea;
+				color: white;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 700;
+				font-size: 1.2rem;
+				margin-bottom: 1rem;
+			}
+			
+			.step-card h3 {
+				color: #2d3748;
+				margin-bottom: 1rem;
+				font-size: 1.4rem;
+			}
+			
+			.step-card p {
+				color: #4a5568;
+				line-height: 1.6;
+			}
+			
+			.tech-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2rem;
+			}
+			
+			.tech-card {
+				text-align: center;
+				padding: 2.5rem 2rem;
+				background: white;
+				border-radius: 16px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			
+			.tech-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+			}
+			
+			.tech-icon {
+				font-size: 3rem;
+				margin-bottom: 1rem;
+			}
+			
+			.tech-card h3 {
+				color: #2d3748;
+				margin-bottom: 1rem;
+				font-size: 1.3rem;
+			}
+			
+			.tech-card p {
+				color: #4a5568;
+				line-height: 1.6;
+			}
+			
+			.best-practices {
+				background: #f8fafc;
+			}
+			
+			.practices-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 2rem;
+			}
+			
+			.practice-card {
+				background: white;
+				padding: 2rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+				border-top: 4px solid #48bb78;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			
+			.practice-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+			}
+			
+			.practice-card h3 {
+				color: #2d3748;
+				margin-bottom: 1rem;
+				font-size: 1.3rem;
+			}
+			
+			.practice-card p {
+				color: #4a5568;
+				line-height: 1.6;
+			}
+			
+			.cta-section {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-align: center;
+			}
+			
+			.cta-section h2 {
+				color: white;
+				margin-bottom: 1rem;
+			}
+			
+			.cta-section p {
+				font-size: 1.2rem;
+				margin-bottom: 2rem;
+				opacity: 0.9;
+			}
+			
+			.cta-buttons {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			
+			.btn-primary, .btn-secondary {
+				padding: 1rem 2rem;
+				border-radius: 8px;
+				text-decoration: none;
+				font-weight: 600;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			
+			.btn-primary {
+				background: white;
+				color: #667eea;
+			}
+			
+			.btn-secondary {
+				background: rgba(255, 255, 255, 0.2);
+				color: white;
+				border: 2px solid white;
+			}
+			
+			.btn-primary:hover, .btn-secondary:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+			}
+			
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 2.5rem;
+				}
+				
+				.hero-subtitle {
+					font-size: 1.1rem;
+				}
+				
+				section h2 {
+					font-size: 2rem;
+				}
+				
+				.steps-grid, .tech-grid, .practices-grid {
+					grid-template-columns: 1fr;
+				}
+				
+				.cta-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+			}
+		</style>
+	</body>
+</html>

@@ -1,0 +1,84 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// 自动添加首页到面包屑
+const breadcrumbItems = [
+  { 
+    name: t('nav.home'), 
+    href: lang === 'en' ? '/' : '/zh/' 
+  },
+  ...items
+];
+
+// 生成JSON-LD结构化数据
+const jsonLD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": new URL(item.href, Astro.site).toString()
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="flex items-center space-x-2 text-sm text-gray-600">
+    {breadcrumbItems.map((item, index) => (
+      <li class="flex items-center">
+        {index > 0 && (
+          <svg class="w-4 h-4 mx-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        )}
+        {index === breadcrumbItems.length - 1 ? (
+          <span class="text-primary-600 font-medium" aria-current="page">
+            {item.name}
+          </span>
+        ) : (
+          <a 
+            href={item.href} 
+            class="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+            aria-label={`Go to ${item.name}`}
+          >
+            {item.name}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<!-- JSON-LD Structured Data for Breadcrumbs -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLD)} />
+
+<style>
+  .breadcrumb-nav {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .breadcrumb-nav {
+      padding: 0.5rem 0;
+    }
+    
+    .breadcrumb-nav ol {
+      font-size: 0.875rem;
+    }
+  }
+</style>
